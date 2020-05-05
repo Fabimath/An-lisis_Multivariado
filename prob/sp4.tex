@@ -1,0 +1,86 @@
+\emph{Demostración:}
+\begin{itemize}
+\item[\textcolor{red}{$\bf{a}$.}] Note que queremos optimizar la función:
+$$
+\ell(\boldsymbol{\mu})=-\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\boldsymbol{\Sigma}|-\frac{1}{2} \operatorname{tr}\left( \boldsymbol{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top\right)
+$$
+Sujeto a:
+$$
+\bf{A}\bf{\mu} = \bf{a} \ssi \bf{\mu}^\top \bf{A}^T = \bf{a}^T
+$$
+Por tanto para encontrar el óptimo debemos optimizar mediante multiplicadores de Lagrange. Definamos el Lagrangiano:
+$$
+\mathcal{L}(\bf{\mu}) = -\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\boldsymbol{\Sigma}|-\frac{1}{2} \operatorname{tr}\left( \boldsymbol{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top\right) + \lambda \parcerrado{
+ \bf{\mu}^\top \bf{A}^T 
+}
+$$
+Luego:
+\begin{align*}
+\de \mathcal{L}(\bf{\mu}) &=
+n (\de \bf{\mu})^\top 
+    \bf{\Sigma}^{-1} \parcurvo{
+\bf{\barra{x}} - \bf{\mu}
+} + \lambda \parcurvo{\de\bf{\mu}}^\top\bf{A}^\top\\
+&= n (\de \bf{\mu})^\top \parcerrado{
+    \bf{\Sigma}^{-1} 
+\bf{\barra{x}} - \bf{\Sigma}^{-1}\bf{\mu}}
+ + \lambda \parcurvo{\de\bf{\mu}}^\top\bf{A}^\top\\
+ &= (\de \bf{\mu})^\top\parllave{
+    n\parcurvo{\parcerrado{
+    \bf{\Sigma}^{-1} 
+\bf{\barra{x}} - \bf{\Sigma}^{-1}\bf{\mu}}} + \lambda \bf{A}^\top
+ }\\
+ &= \parcurvo{\de \bf{\mu}}^\top \parllave{
+    n\bf{\Sigma}^{-1}\barra{\bf{x}} + \bf{A}^\top\lambda - n\bf{\Sigma}^{-1}\bf{\mu}
+ }\\
+ &= \bf{\Sigma}^{-1}\parcurvo{\de \bf{\mu}}^\top n \parllave{
+ \barra{\bf{x}} + \dfrac{\lambda}{n}\bf{\Sigma}\bf{A}^\top - \bf{\mu}
+ }
+\end{align*}
+Igualando a 0 con la finalidad de obtener el óptimo tenemos que:
+\begin{align*}
+\de\mathcal{L}(\bf{\mu}) = 0 &\ssi \bf{\Sigma}^{-1}\parcurvo{\de \bf{\mu}}^\top n \parllave{
+ \barra{\bf{x}} + \dfrac{\lambda}{n}\bf{\Sigma}\bf{A}^\top - \bf{\mu}
+ }=0\\
+  &\ssi \barra{\bf{x}} + \dfrac{\lambda}{n}\bf{\Sigma}\bf{A}^\top - \bf{\mu} = 0 \quad \estrella \\
+     &\ssi \bf{\mu} = \barra{\bf{x}} + \dfrac{\lambda}{n}\bf{\Sigma}\bf{A}^\top\\
+     &\ssi \bf{A}\bf{\mu} = \bf{A}
+  \barra{\bf{x}} + \dfrac{\lambda}{n}\bf{A}\bf{\Sigma}\bf{A}^\top\\
+    &\ssi n\parcurvo{\bf{a} -\bf{A}
+  \barra{\bf{x}}}=  \lambda\parcurvo{\bf{A}\bf{\Sigma}\bf{A}^\top}\\
+    &\ssi \lambda = n\parcurvo{\bf{A}\bf{\Sigma}\bf{A}^\top}^{-1}\parcurvo{\bf{a} -\bf{A}
+  \barra{\bf{x}}}\\
+  &\ssi \lambda = n\parcurvo{\bf{A}\bf{\Sigma}\bf{A}^\top}^{-1}\parcurvo{\bf{a} -\bf{A}
+  \barra{\bf{x}}}
+\end{align*}
+Reemplazando en $\estrella$ tenemos que:
+$$
+\barra{\bf{x}} + \dfrac{\lambda}{n}\bf{\Sigma}\bf{A}^\top - \bf{\mu} = 0 \ssi \bf{\mu} = \barra{\bf{x}} + \bf{\Sigma}\bf{A}^\top\parcurvo{\bf{A}\bf{\Sigma}\bf{A}^\top}^{-1}\parcurvo{\bf{a} -\bf{A}
+  \barra{\bf{x}}}
+$$
+Por tanto $\gorro{\bf{\mu}}_{MV}=\barra{\bf{x}} + \bf{\Sigma}\bf{A}^\top\parcurvo{\bf{A}\bf{\Sigma}\bf{A}^\top}^{-1}\parcurvo{\bf{a} -\bf{A}
+  \barra{\bf{x}}}$.
+  \item[\textcolor{red}{$\bf{b}$.}] Note que el Lagrangiano viene dado por:
+  $$
+\mathcal{L}(\bf{\mu},\bf{\Sigma}) = -\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\boldsymbol{\Sigma}|-\frac{1}{2} \operatorname{tr}\left( \boldsymbol{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top\right) + \lambda \parcerrado{
+ \bf{\mu}^\top \bf{A}^T 
+}
+$$
+Note que al derivar el Lagrangiano con respecto a $\bf{\Sigma}$ e igualarlo a 0 se obtiene el mismo sistema que en el problema $\textcolor{red}{1.}$ por tanto se obtiene de forma directa que $\gorro{\bf{\Sigma}} = \bf{S}_{MV}$. Además si derivamos el Lagrangiano con respecto a $\bf{\mu}$ obtenemos el mismo sistema que en $\textcolor{red}{4a.}$ por tanto reemplazando el estimador de $\bf{\Sigma}$ en esta expresión obtenemos que:
+$$
+\gorro{\mu}_{MV} = \barra{\bf{x}} + \bf{S}_{MV}\bf{A}^\top\parcurvo{\bf{A}\bf{S}_{MV}\bf{A}^\top}^{-1}\parcurvo{\bf{a} -\bf{A}
+  \barra{\bf{x}}}
+$$
+\end{itemize}

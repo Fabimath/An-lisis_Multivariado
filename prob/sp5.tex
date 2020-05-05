@@ -1,0 +1,73 @@
+\emph{Demostración:}\\
+\\
+Note que la función de log-verosimilitud adopta la forma:
+$$
+\ell(\bf{\mu},\phi) = -\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\phi \bf{V}|-\frac{1}{2} \operatorname{tr}\left( \parcurvo{\phi \bf{V}}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top\right)
+$$
+Note que derivando $\ell$ con respecto a $\bf{\mu}$ y asumiendo $\bf{\Sigma} = \phi \bf{V}$ constante se tiene que:
+\begin{align*}
+\de \ell _{\bf{\mu}} = n (\de \bf{\mu})^\top
+    \parcurvo{\phi \bf{V}}^{-1} \parcurvo{
+\bf{\barra{x}} - \bf{\mu}
+}
+\end{align*}
+Igualando a 0 tenemos que:
+\begin{align*}
+\de \ell_{\bf{\mu}} = 0 &\ssi n (\de \bf{\mu})^\top
+    \parcurvo{\phi \bf{V}}^{-1} \parcurvo{
+\bf{\barra{x}} - \bf{\mu}
+} = 0\\
+&= \barra{\bf{x}} = \bf{\mu}
+\end{align*}
+Note que para derivar con respecto a $\phi$ es conveniente notar que la log-verosimilitud se puede escribir de la siguiente forma:
+\begin{align*}
+\ell(\bf{\mu},\phi) &= -\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\phi \bf{V}|-\frac{1}{2} \operatorname{tr}\left( \parcurvo{\phi \bf{V}}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top\right)\\
+&= -\frac{np}{2}\log(2\pi) -\frac{np}{2} \parcurvo{\log( \phi)} -\frac{n}{2}\parcurvo{\log|\bf{V}|} +\dfrac{1}{\phi}\parllave{-\dfrac{1}{2}\tr\parcurvo{ \bf{V}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top}}
+\end{align*}
+Luego derivando con respecto a $\phi$ tenemos que:
+\begin{align*}
+\de \ell_{\phi} &= -\dfrac{np}{2} \dfrac{1}{\phi} + \parcurvo{-\dfrac{1}{\phi^2}}\parllave{-\dfrac{1}{2}\tr\parcurvo{ \bf{V}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top}}\\
+&=
+-\dfrac{np}{2} \dfrac{1}{\phi} + \parcurvo{\dfrac{1}{2\phi^2}}\parllave{\tr\parcurvo{ \bf{V}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top}}\\
+&=
+-\phi\dfrac{np}{2\phi^2} + \parcurvo{\dfrac{1}{2\phi^2}}\parllave{\tr\parcurvo{ \bf{V}^{-1}(\textcolor{red}{n})\dfrac{1}{\textcolor{red}{n}}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top}}\\
+&= \parcurvo{\dfrac{np}{2\phi^2}}\parllave{ -\phi + \dfrac{1}{p}\tr\parcurvo{ \bf{V}^{-1}\dfrac{1}{n}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top}}
+\end{align*}
+Haciendo $\de \ell _\phi = 0$ y reemplazando $\bf{\mu} = \barra{\bf{x}}$ tenemos que:
+\begin{align*}
+\phi &= \dfrac{1}{p}\tr\parcurvo{ \bf{V}^{-1}\dfrac{1}{n}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}
+}\parcurvo{
+\bf{x}_i - \bf{\mu}
+}^\top}\\
+&= \dfrac{1}{p}\tr\parcurvo{ \bf{V}^{-1}\bf{S}_{MV}}
+\end{align*}
+Por lo tanto el estimador de $\phi$ por maxima verosimilitud es $\gorro{\phi} = \dfrac{1}{p} \tr\parcurvo{\bf{V}^{-1} \bf{S}_{MV}}$

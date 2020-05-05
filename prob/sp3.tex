@@ -1,0 +1,103 @@
+\emph{Demostración:}
+\begin{itemize}
+\item[\textcolor{red}{$\bf{a}$.}] Note que la función de log-verosimilitud adopta la siguiente forma:
+$$
+\ell(\gamma)=-\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\boldsymbol{\Sigma}|-\frac{1}{2} \operatorname{tr}\left( \boldsymbol{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top\right)
+$$
+Derivando con respecto a $\gamma$ tenemos que:
+\begin{align*}
+\de \ell (\gamma ) = -\dfrac{1}{2} \tr \parcurvo{
+\bf{\Sigma}^{-1} \suma \de \parcerrado{ \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top}
+}
+\end{align*}
+Note que:
+\begin{align*}
+ \de\parllave{
+        \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top
+    } &= \de\parcerrado{  \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}}\parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top + \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\de\parcerrado{
+\parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top
+}\\
+&= -(\de \gamma)\bf{a} \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top - \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\bf{a}^\top(\de \gamma)^\top
+\end{align*}
+Luego tenemos que:
+\begin{align*}
+\de \ell (\gamma ) &= -\dfrac{1}{2} \tr \parcurvo{
+\bf{\Sigma}^{-1} \suma \de \parcerrado{ \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top}
+}\\
+&=  \dfrac{1}{2} \tr \parcurvo{
+\bf{\Sigma}^{-1} \suma \parllave{(\de \gamma)\bf{a} \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top + \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\bf{a}^\top(\de \gamma)^\top}
+}\\
+&= \dfrac{n}{2} \tr\parcurvo{
+\bf{\Sigma}^{-1} (\de \gamma)\bf{a}\parcurvo{\barra{x} - \gamma \bf{a}}^\top + \bf{\Sigma}^{-1}\parcurvo{ \barra{x} - \gamma\bf{a}}\bf{a}^\top (\de \gamma)^\top
+}\\
+&= \dfrac{n}{2} \tr\parcurvo{
+\bf{\Sigma}^{-1} (\de \gamma)\bf{a}\parcurvo{\barra{x} - \gamma \bf{a}}^\top} +\dfrac{n}{2}  \tr\parcurvo{\bf{\Sigma}^{-1}\parcurvo{ \barra{x} - \gamma\bf{a}}\bf{a}^\top (\de \gamma)^\top
+}\\
+&= \dfrac{n}{2} \tr\parcurvo{
+\parcurvo{\barra{x} - \gamma \bf{a}} \bf{a}^\top  (\de \gamma)^\top \bf{\Sigma}^{-\top}} + \dfrac{n}{2} \tr\parcurvo{\bf{\Sigma}^{-1}\parcurvo{ \barra{x} - \gamma\bf{a}}\bf{a}^\top (\de \gamma)^\top
+}\\
+&= n \tr\parcurvo{\bf{\Sigma}^{-1}\parcurvo{ \barra{x} - \gamma\bf{a}}\bf{a}^\top (\de \gamma)^\top
+}\\
+&= n \tr\parcurvo{\bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1}\parcurvo{ \barra{x} - \gamma\bf{a}}
+}\\
+&= n \parcurvo{\bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1}\parcurvo{ \barra{x} - \gamma\bf{a}}}
+\\
+&= n \parcurvo{\bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1}\parcurvo{ \barra{x} - \gamma\bf{a}}}
+\\
+&= n \parcurvo{\bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1} \barra{x} - \bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1}\gamma\bf{a}}\\
+\end{align*}
+Finalmente si $\de \ell (\gamma) = 0$ se tiene que:
+\begin{align*}
+\de \ell (\gamma) = 0 &\ssi n \parcurvo{\bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1} \barra{x} - \bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1}\gamma\bf{a}} = 0\\
+&\ssi \bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1} \barra{x}=\bf{a}^\top (\de \gamma)^\top\bf{\Sigma}^{-1}\gamma\bf{a}\\
+&\ssi \gamma = \dfrac{\bf{a}^\top \bf{\Sigma^{-1}} \barra{x}}{\bf{a}^\top \bf{\Sigma}^{-1} \bf{a}}
+\end{align*}
+Note que esto se tiene pues $\de \gamma \in \mathbb{R}^{1\times 1}$. Finalmente el estimador de $\gamma$ para $\bf{\Sigma}$ conocido viene dado por:
+$$
+\gorro{\gamma}_{MV} = \dfrac{\bf{a}^\top \bf{\Sigma^{-1}} \barra{x}}{\bf{a}^\top \bf{\Sigma}^{-1} \bf{a}}
+$$
+\item[\textcolor{red}{$\bf{b}$.}] Sea $\bf{\theta} = \parcurvo{\gamma,\bf{\Sigma}}$. Buscamos el estimador máximo verosímil para $\bf{\theta}$, note que la función de log-verosimilitud ahora tiene la siguiente estructura:
+$$
+\ell(\gamma,\Sigma)=-\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\boldsymbol{\Sigma}|-\frac{1}{2} \operatorname{tr}\left( \boldsymbol{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}\parcurvo{
+\bf{x}_i - \gamma\bf{a}
+}^\top\right)
+$$
+Note que la ecuación $\de \ell _{\gamma} = 0$ tiene como solución $\gamma = \dfrac{\bf{a}^\top \bf{\Sigma^{-1}} \barra{x}}{\bf{a}^\top \bf{\Sigma}^{-1} \bf{a}}$. Resta encontrar la solución de $\de \ell _{\bf{\Sigma}}$, pero usando $\textcolor{red}{\bf{1.}}$ tenemos el óptimo que es $\bf{S}_{MV}$ y reemplazando en la estimación de $\gamma$ tenemos que:
+\begin{align*}
+\gorro{\gamma}_{MV} = \dfrac{\bf{a}^\top \bf{S}_{MV}^{-1}\barra{x}}{\bf{a}^\top \bf{S}_{MV}^{-1} \bf{a}}
+\end{align*}
+\end{itemize}

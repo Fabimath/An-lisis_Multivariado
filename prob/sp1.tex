@@ -1,0 +1,113 @@
+\emph{Demostración:}\\
+\\
+Note que si $\bf{\mu} =\bf{\mu}_0$ conocido entonces la función de densidad conjunta adopta la siguiente forma:
+$$
+f(\boldsymbol{x};\bf{\Sigma})=|2 \pi \boldsymbol{\Sigma}|^{-n / 2} \exp \left\{-\frac{1}{2}\suma(\boldsymbol{x}_i-\boldsymbol{\mu}_0)^{\top} \boldsymbol{\Sigma}^{-1}(\boldsymbol{x}_i-\boldsymbol{\mu}_0)\right\}
+$$
+la verosimilitud viene dada por:
+$$
+L\left(\bf{\Sigma}\right) = (2 \pi)^{-np/2} |\boldsymbol{\Sigma}|^{-n / 2} \exp \left\{-\frac{1}{2}\suma(\boldsymbol{x}_i-\boldsymbol{\mu}_0)^{\top} \boldsymbol{\Sigma}^{-1}(\boldsymbol{x}_i-\boldsymbol{\mu}_0)\right\}
+$$
+Y la log-verosimilitud por:
+$$
+\ell(\boldsymbol{\Sigma})=-\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\boldsymbol{\Sigma}|-\frac{1}{2} \operatorname{tr}\left( \boldsymbol{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top\right)
+$$
+Note que debemos derivar $\ell$ con respecto a una matriz, por tanto:
+\begin{align*}
+\de \ell(\bf{\Sigma}) &= \de\parcerrado{
+-\frac{np}{2}\log(2\pi)-\frac{n}{2} \log |\boldsymbol{\Sigma}|-\frac{1}{2} \operatorname{tr}\left( \boldsymbol{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top\right)
+}\\
+&= -\dfrac{n}{2} \de \parcerrado{\log|\bf{\Sigma}|} -\dfrac{1}{2} \de \parcerrado{\operatorname{tr}\left( \boldsymbol{\Sigma}^{-1} \parcurvo{
+\bf{x} - \bf{\mu}_0
+}\parcurvo{
+\bf{x} - \bf{\mu}_0
+}^\top\right)}\\
+&= -\dfrac{n}{2} \tr\parcurvo{\bf{\Sigma}^{-1} \de \bf{\Sigma}} - \dfrac{1}{2}\tr\parcerrado{
+\de\parllave{
+\bf{\Sigma}^{-1}\suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+}
+}\\
+&= -\dfrac{n}{2} \tr\parcurvo{\bf{\Sigma}^{-1} \de \bf{\Sigma}}- \dfrac{1}{2} \tr\parcerrado{
+-\bf{\Sigma}^{-1}(\de \bf{\Sigma}) \bf{\Sigma}^{-1} \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+}\\
+&=-\dfrac{1}{2} \tr\parcurvo{n\bf{\Sigma}^{-1} \de \bf{\Sigma}}+ \dfrac{1}{2} \tr\parcerrado{\bf{\Sigma}^{-1} \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+\bf{\Sigma}^{-1}(\de \bf{\Sigma}) 
+}\\
+&= \dfrac{1}{2}\tr\parcerrado{\bf{\Sigma}^{-1} \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+\bf{\Sigma}^{-1}(\de \bf{\Sigma}) - n\bf{\Sigma^{-1}(\de \bf{\Sigma})
+}
+}\\
+&= \dfrac{1}{2}\tr\parcerrado{\bf{\Sigma}^{-1}\parllave{ \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+\bf{\Sigma}^{-1}-n}(\de \bf{\Sigma})
+}\\
+&= \dfrac{1}{2}\tr\parcerrado{\bf{\Sigma}^{-1}\parllave{ \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+-n\bf{\Sigma}}\bf{\Sigma}^{-1}(\de \bf{\Sigma})
+}
+\end{align*}
+Finalmente si $\de \ell (\bf{\Sigma}) = 0$ se tiene que:
+\begin{align*}
+\de \ell (\bf{\Sigma}) = 0 &\ssi \dfrac{1}{2}\tr\parcerrado{\bf{\Sigma}^{-1}\parllave{ \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+-n\bf{\Sigma}}\bf{\Sigma}^{-1}(\de \bf{\Sigma})
+} = 0\\
+&\ssi \bf{\Sigma}^{-1}\parllave{ \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+-n\bf{\Sigma}}\bf{\Sigma}^{-1}(\de \bf{\Sigma}) = 0\\
+&\ssi \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+-n\bf{\Sigma} = 0\\
+&\ssi \bf{\Sigma}=  \dfrac{1}{n} \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+\end{align*}
+Por tanto el estimador máximo verosímil para $\bf{\Sigma}$ para la distribución normal multivariada con $\mu$ conocido viene dado por:
+$$
+\gorro{\bf{\Sigma}}_{MV}=  \dfrac{1}{n} \suma \parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}\parcurvo{
+\bf{x}_i - \bf{\mu}_0
+}^\top
+$$
